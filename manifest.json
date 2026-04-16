@@ -1,0 +1,20 @@
+{
+  "name": "KINEPRO",
+  "short_name": "KINEPRO",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07101b",
+  "theme_color": "#07101b",
+  "icons": [
+    {
+      "src": "kinepro-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "kinepro-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
