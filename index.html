@@ -1503,6 +1503,319 @@ body.theme-light .digital {
   .timer-content .digital { font-size: 5rem; }
 }
 
+
+/* === FINAL KINEPRO PROFESSIONAL DARK THEME PATCH === */
+:root{
+  --bg:#060e18;
+  --bg2:#08111b;
+  --card:#101a25;
+  --line:rgba(255,255,255,.08);
+  --text:#f4f7fb;
+  --muted:#93a0b0;
+  --accent:#53efb9;
+  --accent2:#21c58f;
+  --danger:#c93244;
+  --warn:#ffb84d;
+  --shadow:0 14px 40px rgba(0,0,0,.34);
+  --navH:84px;
+  --topSafe:max(14px, env(safe-area-inset-top));
+  --bottomSafe:max(14px, env(safe-area-inset-bottom));
+  --radius-card:24px;
+  --radius-btn:18px;
+}
+body{
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(83,239,185,.07) 0%, transparent 38%),
+    radial-gradient(ellipse at 80% 80%, rgba(83,239,185,.04) 0%, transparent 42%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 52%, #050c14 100%) !important;
+  overflow:hidden;
+}
+body.theme-light{
+  --bg:#f3f7fb;
+  --bg2:#e7edf5;
+  --card:#ffffff;
+  --line:rgba(16,23,34,.08);
+  --text:#101722;
+  --muted:#5d6a79;
+  --shadow:0 10px 24px rgba(16,23,34,.12);
+  background:linear-gradient(180deg,#f8fbff 0%, #edf4fb 100%) !important;
+}
+body::before,
+body::after,
+body.theme-light::before,
+body.theme-light::after{
+  display:none !important;
+}
+*{
+  scrollbar-width:none;
+}
+*::-webkit-scrollbar{
+  display:none !important;
+  width:0 !important;
+  height:0 !important;
+}
+.app{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  overflow:hidden;
+}
+main{
+  height:100%;
+  position:relative;
+  overflow:hidden;
+}
+.screen{
+  position:absolute;
+  inset:0;
+  display:none;
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  -webkit-overflow-scrolling:touch;
+  padding:var(--topSafe) 16px calc(var(--navH) + var(--bottomSafe) + 20px) 16px !important;
+}
+.screen.active{
+  display:block;
+}
+.patient-profile,
+.modal-backdrop,
+.sheet,
+.sheet-card,
+#patientProfileSheet,
+#patientSheet,
+#routineSheet,
+#executionSheet,
+#settingsSheet{
+  -webkit-overflow-scrolling:touch;
+}
+.patient-profile,
+.sheet{
+  overflow-y:auto !important;
+}
+.sheet{
+  max-height:90dvh !important;
+  overflow-x:hidden !important;
+  background:linear-gradient(180deg, rgba(16,26,37,.98), rgba(10,18,28,.99)) !important;
+  border-top:1px solid var(--line) !important;
+}
+body.theme-light .sheet{
+  background:linear-gradient(180deg, #ffffff, #eef4fa) !important;
+}
+.card,.session-card,.routine-card,.patient-card,.detail-card,.exec-item,.sheet-card,.hero,.builder-box,.home-stat,.timer-panel,.stat,.quick-btn{
+  background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)) !important;
+  border:1px solid var(--line) !important;
+  border-radius:24px !important;
+  box-shadow:var(--shadow) !important;
+  transition:all .2s ease !important;
+}
+body.theme-light .card,
+body.theme-light .session-card,
+body.theme-light .routine-card,
+body.theme-light .patient-card,
+body.theme-light .detail-card,
+body.theme-light .exec-item,
+body.theme-light .sheet-card,
+body.theme-light .hero,
+body.theme-light .builder-box,
+body.theme-light .home-stat,
+body.theme-light .timer-panel,
+body.theme-light .stat,
+body.theme-light .quick-btn{
+  background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.92)) !important;
+}
+.icon-btn,.primary-btn,.secondary-btn,.danger-btn,.action-pill,.nav-btn,.seg-btn,.chip,.searchbar,.input,.textarea,.select,.custom-select-btn,.field-input,.presc-input,.routine-menu-btn,.fab,.badge,.tag,.home-live-tag{
+  transition:all .2s ease !important;
+}
+.icon-btn,.secondary-btn,.action-pill,.seg-btn,.chip,.searchbar,.input,.textarea,.select,.custom-select-btn,.field-input,.presc-input,.routine-menu-btn,.badge,.tag,.home-live-tag,.note-box,.custom-select-list,.routine-menu-dropdown{
+  background:rgba(255,255,255,.045) !important;
+  border:1px solid var(--line) !important;
+  color:var(--text) !important;
+}
+body.theme-light .icon-btn,
+body.theme-light .secondary-btn,
+body.theme-light .action-pill,
+body.theme-light .seg-btn,
+body.theme-light .chip,
+body.theme-light .searchbar,
+body.theme-light .input,
+body.theme-light .textarea,
+body.theme-light .select,
+body.theme-light .custom-select-btn,
+body.theme-light .field-input,
+body.theme-light .presc-input,
+body.theme-light .routine-menu-btn,
+body.theme-light .badge,
+body.theme-light .tag,
+body.theme-light .home-live-tag,
+body.theme-light .note-box,
+body.theme-light .custom-select-list,
+body.theme-light .routine-menu-dropdown{
+  background:#fff !important;
+}
+.title,.section-title,.routine-title,.patient-name,.exercise-name,.hero .main,.home-greeting .hello,.home-live-name,.session-time,
+.label,.eyebrow,.hero .small,.home-live-title,.home-stat .k,.timer-panel .timer-label,.badge,.home-live-state,.section-link,.tag,.chip,.seg-btn,.nav-btn,.action-pill{
+  text-transform:none !important;
+  letter-spacing:normal !important;
+}
+.title,.section-title,.routine-title,.patient-name,.exercise-name,.hero .main,.home-greeting .hello,.home-live-name,.session-time{
+  color:var(--text) !important;
+}
+.subtitle,.mini,.detail-row .k,.home-greeting .sub,.hero .meta,.stat .label,.bex-prescription,.note-box,.tag,.detail-row .v,.exec-prev-line,.eyebrow,.hero .small,.home-live-title,.home-stat .k,.label{
+  color:var(--muted) !important;
+}
+.primary-btn,.home-live-btn,.routine-start-btn,.fab{
+  background:linear-gradient(180deg, var(--accent), var(--accent2)) !important;
+  color:#04110d !important;
+  border:1px solid transparent !important;
+  box-shadow:0 10px 24px rgba(83,239,185,.22) !important;
+}
+.primary-btn:hover,.home-live-btn:hover,.routine-start-btn:hover,.fab:hover{
+  filter:brightness(1.03);
+  box-shadow:0 14px 28px rgba(83,239,185,.26) !important;
+}
+.nav-btn,
+body.theme-light .nav-btn{
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  color:#fff !important;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:8px 2px 0;
+  font-size:.65rem !important;
+  line-height:1.1;
+  text-transform:uppercase !important;
+  letter-spacing:.1em !important;
+  font-weight:800 !important;
+  text-align:center;
+}
+.nav-btn .nav-ico,
+body.theme-light .nav-btn .nav-ico{
+  width:30px;
+  height:30px;
+  display:grid;
+  place-items:center;
+  color:#fff !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+.nav-btn svg{
+  width:30px;
+  height:30px;
+  display:block;
+  fill:currentColor;
+}
+.nav-btn.active,
+body.theme-light .nav-btn.active{
+  color:#fff !important;
+}
+.nav-btn.active .nav-ico{
+  color:#fff !important;
+}
+.nav-btn[data-screen="execution"] .nav-ico{
+  color:var(--accent) !important;
+}
+.bottom-nav,
+body.theme-light .bottom-nav{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:70;
+  height:calc(var(--navH) + var(--bottomSafe));
+  padding:8px 10px calc(10px + var(--bottomSafe));
+  margin:0;
+  border-radius:0;
+  border-top:1px solid rgba(255,255,255,.08) !important;
+  background:rgba(10,10,10,.95) !important;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  display:grid !important;
+  grid-template-columns:repeat(5,1fr);
+  gap:2px;
+  box-shadow:none !important;
+}
+@media (max-width:599px){
+  .bottom-nav{
+    bottom:0;
+  }
+}
+@media (min-width:600px) and (max-width:1024px){
+  .bottom-nav{
+    top:0;
+    bottom:auto;
+    height:84px;
+    padding:10px 24px;
+  }
+  .screen{
+    padding-top:calc(84px + 24px) !important;
+  }
+}
+@media (min-width:1025px){
+  .bottom-nav,
+  body.theme-light .bottom-nav{
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:auto;
+    width:220px;
+    height:100dvh;
+    padding:32px 12px 24px;
+    display:flex !important;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:6px;
+    border-top:none !important;
+    border-right:1px solid var(--line) !important;
+    background:rgba(10,10,10,.98) !important;
+  }
+  .bottom-nav::before{
+    content:'KINEPRO';
+    display:block;
+    color:var(--text);
+    font-size:1rem;
+    font-weight:900;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    padding:0 16px 24px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:16px;
+  }
+  .nav-btn{
+    flex-direction:row;
+    justify-content:flex-start;
+    gap:12px;
+    padding:14px 16px;
+    text-align:left;
+  }
+  .nav-btn .nav-ico{
+    width:26px;
+    height:26px;
+  }
+  .nav-btn svg{
+    width:26px;
+    height:26px;
+  }
+  main{
+    margin-left:220px;
+    flex:1;
+    height:100dvh;
+    overflow:hidden;
+  }
+  .screen{
+    position:absolute;
+    inset:0;
+    padding:32px 40px 60px !important;
+  }
+}
+
 </style>
 </head>
 <body>
