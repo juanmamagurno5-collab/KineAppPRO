@@ -10,10 +10,10 @@
 <link rel="icon" type="image/png" sizes="512x512" href="kinepro-icon-512.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="KINEPRO">
-<meta name="theme-color" content="#07101b">
+<meta name="theme-color" content="#000000">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#060e18; --bg2:#070f1a; --card:#0f1923; --line:rgba(255,255,255,.07); --text:#eef3f7; --muted:#9ba7b4;
@@ -452,6 +452,20 @@ body.theme-light .library-footer-sticky {
 .presc-actions .field-cancel-btn { width: auto; padding: 0 14px; height: 38px; border-radius: 10px; font-size: .85rem; }
 @media (max-width: 520px) {
   .presc-inputs { grid-template-columns: 1fr; }
+}
+
+.system-container{display:grid;gap:16px;}
+.system-header{display:flex;gap:20px;align-items:center;padding:20px;border-left:4px solid var(--accent);background:linear-gradient(90deg, rgba(0,212,240,.12), transparent);border-radius:0 16px 16px 0;}
+.lvl-badge{font-size:2.2rem;font-weight:900;background:linear-gradient(180deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1;}
+.system-card{background:linear-gradient(180deg, rgba(8,20,34,.88), rgba(5,12,22,.92));border:1px solid rgba(0,212,240,.14);border-radius:20px;padding:16px;box-shadow:0 10px 28px rgba(0,0,0,.26);}
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.xp-bar-container{margin-top:10px;}
+.xp-label{font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:5px;display:flex;justify-content:space-between;gap:10px;font-weight:800;}
+.system-avatar{width:60px;height:60px;border:2px solid var(--accent);box-shadow:0 0 20px rgba(0,212,240,.18);}
+.mission-log-title{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:10px;}
+@media (max-width:520px){
+  .system-header{flex-wrap:wrap;align-items:flex-start;}
+  .skill-grid{grid-template-columns:1fr;}
 }
 
 /* Responsive breakpoints */
@@ -1064,6 +1078,431 @@ body.theme-light .bottom-nav{
   }
 }
 
+
+
+/* ===============================
+   KINEPRO HIGH-TECH CRYPTO EDITION
+   CSS override patch
+   =============================== */
+:root{
+  --bg:#000000;
+  --bg2:#050505;
+  --panel:#121212;
+  --panel-2:#0d0d0d;
+  --line:#222222;
+  --line-strong:#2d2d2d;
+  --text:#ffffff;
+  --muted:#888888;
+  --accent:#dfff00;
+  --accent-strong:#c7f300;
+  --accent-soft:rgba(223,255,0,.16);
+  --accent-glow:0 0 0 1px rgba(223,255,0,.18), 0 0 18px rgba(223,255,0,.12), 0 18px 40px rgba(0,0,0,.46);
+  --danger:#ff4d6d;
+  --warn:#ffb84d;
+  --radius-card:24px;
+  --radius-btn:12px;
+  --shadow:0 18px 42px rgba(0,0,0,.48);
+  --font-head:"Montserrat",Inter,system-ui,sans-serif;
+  --font-body:Inter,Montserrat,system-ui,sans-serif;
+}
+html,body{
+  background:#000;
+}
+body,
+body.theme-light{
+  font-family:var(--font-body);
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(223,255,0,.08), transparent 26%),
+    radial-gradient(circle at 88% 18%, rgba(223,255,0,.05), transparent 18%),
+    linear-gradient(180deg, rgba(255,255,255,.02) 0, rgba(255,255,255,0) 260px),
+    #000000;
+  overflow:hidden;
+}
+body::before,
+body.theme-light::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(17,17,17,.9) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17,17,17,.9) 1px, transparent 1px);
+  background-size:56px 56px;
+  opacity:.62;
+  z-index:0;
+}
+body::after,
+body.theme-light::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 8%, rgba(223,255,0,.10), transparent 24%),
+    radial-gradient(circle at 50% 100%, rgba(223,255,0,.05), transparent 30%);
+  mix-blend-mode:screen;
+  z-index:0;
+}
+.app,
+body.theme-light .app{
+  position:relative;
+  z-index:1;
+  background:transparent;
+}
+main{position:relative;z-index:1;}
+.screen.active{animation:kineproFadeUp .3s ease-out both;}
+.topbar,.home-greeting,.section-head{position:relative;z-index:1;}
+.title,
+.section-title,
+.routine-title,
+.patient-name,
+.exercise-name,
+.hero .main,
+.home-greeting .hello,
+.home-live-name,
+#execPatientName,
+#profileName,
+.session-time,
+.digital{
+  font-family:var(--font-head);
+  font-weight:900;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.eyebrow,
+.hero .small,
+.home-live-title,
+.home-stat .k,
+.label,
+.timer-panel .timer-label,
+.badge,
+.home-live-state,
+.section-link,
+.tag,
+.chip,
+.seg-btn,
+.nav-btn,
+.action-pill,
+.hist-time{
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.subtitle,.mini,.detail-row .k,.home-greeting .sub,.hero .meta,.stat .label,.bex-prescription,.note-box,.tag,.detail-row .v,.exec-prev-line{color:var(--muted);}
+.card,.session-card,.routine-card,.patient-card,.detail-card,.exec-item,.sheet-card,.hero,.builder-box,.home-stat,.timer-panel,.stat,
+body.theme-light .card,body.theme-light .session-card,body.theme-light .routine-card,body.theme-light .patient-card,body.theme-light .detail-card,body.theme-light .exec-item,body.theme-light .sheet-card,body.theme-light .hero,body.theme-light .builder-box,body.theme-light .home-stat,body.theme-light .timer-panel,body.theme-light .stat{
+  background:linear-gradient(180deg, rgba(18,18,18,.96), rgba(10,10,10,.98));
+  border:1px solid var(--line);
+  border-radius:var(--radius-card);
+  box-shadow:var(--shadow);
+  backdrop-filter:none;
+}
+.card:hover,.session-card:hover,.routine-card:hover,.patient-card:hover,.detail-card:hover,.exec-item:hover,.sheet-card:hover,.hero:hover,.builder-box:hover,.home-stat:hover,.stat:hover{
+  transform:scale(1.02);
+  border-color:rgba(223,255,0,.24);
+  box-shadow:var(--accent-glow);
+}
+.icon-btn,.avatar,.avatar-sm,.quick-btn .k,.home-live-icon,.home-stat .k::before,.action-pill,.routine-menu-btn,.nav-btn .nav-ico,.check,.lib-check,
+body.theme-light .icon-btn,body.theme-light .avatar,body.theme-light .avatar-sm,body.theme-light .quick-btn .k,body.theme-light .home-live-icon,body.theme-light .action-pill,body.theme-light .routine-menu-btn,body.theme-light .nav-btn .nav-ico,body.theme-light .check,body.theme-light .lib-check{
+  background:rgba(223,255,0,.08);
+  border:1px solid rgba(223,255,0,.16);
+  color:var(--accent);
+  box-shadow:none;
+}
+.avatar,.icon-btn{border-radius:16px;}
+.home-stat .k::before{box-shadow:none !important;}
+.primary-btn,.home-live-btn,.routine-start-btn,.fab,
+body.theme-light .primary-btn,body.theme-light .home-live-btn,body.theme-light .routine-start-btn,body.theme-light .fab{
+  background:var(--accent);
+  color:#000000;
+  border:1px solid rgba(223,255,0,.55);
+  border-radius:var(--radius-btn);
+  box-shadow:0 0 0 1px rgba(223,255,0,.18), 0 10px 26px rgba(223,255,0,.16);
+  font-family:var(--font-head);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  transition:transform .3s ease-out, box-shadow .3s ease-out, filter .3s ease-out, background .3s ease-out;
+}
+.primary-btn:hover,.home-live-btn:hover,.routine-start-btn:hover,.fab:hover{
+  box-shadow:0 0 0 1px rgba(223,255,0,.3), 0 0 24px rgba(223,255,0,.24), 0 16px 32px rgba(0,0,0,.38);
+  filter:brightness(1.03);
+}
+.secondary-btn,.seg-btn,.chip,.searchbar,.input,.textarea,.select,.custom-select-btn,.field-input,.presc-input,.note-box,.home-live-tag,.tag,.badge,.quick-btn,.stat,.custom-select-list,.routine-menu-dropdown,.sheet,
+body.theme-light .secondary-btn,body.theme-light .seg-btn,body.theme-light .chip,body.theme-light .searchbar,body.theme-light .input,body.theme-light .textarea,body.theme-light .select,body.theme-light .custom-select-btn,body.theme-light .field-input,body.theme-light .presc-input,body.theme-light .note-box,body.theme-light .home-live-tag,body.theme-light .tag,body.theme-light .badge,body.theme-light .quick-btn,body.theme-light .stat,body.theme-light .custom-select-list,body.theme-light .routine-menu-dropdown,body.theme-light .sheet{
+  background:rgba(12,12,12,.94);
+  border:1px solid var(--line);
+  color:var(--text);
+}
+.searchbar,.input,.textarea,.select,.custom-select-btn,.field-input,.presc-input,
+body.theme-light .searchbar,body.theme-light .input,body.theme-light .textarea,body.theme-light .select,body.theme-light .custom-select-btn,body.theme-light .field-input,body.theme-light .presc-input{
+  border-radius:16px;
+  border:1px solid #1a1a1a;
+  border-bottom:2px solid #2a2a2a;
+  box-shadow:none;
+}
+.searchbar input,.input input,.select select,.field-input,.presc-input,.textarea,
+body.theme-light .searchbar input,body.theme-light .input input,body.theme-light .select select,body.theme-light .field-input,body.theme-light .presc-input,body.theme-light .textarea{
+  color:#fff;
+  font-family:var(--font-body);
+}
+.searchbar:focus-within,.input:focus-within,.select:focus-within,.custom-select-btn.open,.field-input:focus,.presc-input:focus,textarea.textarea:focus,
+body.theme-light .searchbar:focus-within,body.theme-light .input:focus-within,body.theme-light .select:focus-within,body.theme-light .custom-select-btn.open,body.theme-light .field-input:focus,body.theme-light .presc-input:focus,body.theme-light textarea.textarea:focus{
+  border-color:#2b2b2b;
+  border-bottom-color:var(--accent);
+  box-shadow:0 12px 24px rgba(0,0,0,.22);
+}
+.searchbar input::placeholder,.input input::placeholder,textarea.textarea::placeholder{color:#6f6f6f;}
+.seg-btn,.chip,.badge,.action-pill,.nav-btn,.section-link{transition:all .3s ease-out;}
+.seg-btn.active,.chip.active,.badge.active,.action-pill.start,
+body.theme-light .seg-btn.active,body.theme-light .chip.active,body.theme-light .badge.active,body.theme-light .action-pill.start{
+  background:rgba(223,255,0,.12);
+  border-color:rgba(223,255,0,.28);
+  color:var(--accent);
+  box-shadow:none;
+}
+.badge.paused,.badge.warning{background:rgba(255,184,77,.12);border-color:rgba(255,184,77,.22);color:#ffb84d;}
+.badge.template{background:rgba(255,255,255,.06);border-color:#343434;color:#d4d4d4;}
+.home-stat .v,.digital,.home-live-timer,
+body.theme-light .home-stat .v,body.theme-light .digital,body.theme-light .home-live-timer{
+  color:var(--accent);
+  background:none;
+  -webkit-background-clip:initial;
+  background-clip:initial;
+  text-shadow:0 0 18px rgba(223,255,0,.18);
+}
+.digital{
+  font-size:4rem;
+  line-height:.95;
+}
+.timer-panel{
+  border:1px solid rgba(223,255,0,.22);
+  box-shadow:0 0 0 1px rgba(223,255,0,.08), 0 0 26px rgba(223,255,0,.10), 0 22px 44px rgba(0,0,0,.48);
+}
+.timer-panel .timer-label{color:#b8b8b8;}
+.progress-bar,
+.progress-line,
+body.theme-light .progress-bar,
+body.theme-light .progress-line{
+  background:#171717;
+  border:1px solid #232323;
+}
+.progress-bar>span,.progress-line span,
+body.theme-light .progress-bar>span,body.theme-light .progress-line span{
+  background:var(--accent);
+  box-shadow:0 0 16px rgba(223,255,0,.24);
+}
+.exec-item.completed{
+  border-color:rgba(223,255,0,.24);
+  background:linear-gradient(180deg, rgba(223,255,0,.08), rgba(10,10,10,.98));
+}
+.exec-item.completed .check,.lib-item.lib-selected .lib-check{
+  background:var(--accent);
+  color:#000;
+  border-color:var(--accent);
+}
+.bottom-nav,
+body.theme-light .bottom-nav{
+  background:rgba(0,0,0,.72);
+  border:1px solid rgba(255,255,255,.06);
+  border-top:1px solid rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 16px 34px rgba(0,0,0,.42);
+}
+.nav-btn,
+body.theme-light .nav-btn{
+  background:transparent;
+  border:1px solid transparent;
+  color:#7a7a7a;
+}
+.nav-btn.active,
+body.theme-light .nav-btn.active{
+  color:var(--accent);
+  background:rgba(223,255,0,.08);
+  border-color:rgba(223,255,0,.16);
+  box-shadow:none;
+}
+.fab{border-radius:18px;}
+.home-live-card{
+  background:linear-gradient(180deg, rgba(223,255,0,.08), rgba(18,18,18,.98));
+  border:1px solid rgba(223,255,0,.24);
+  box-shadow:0 0 28px rgba(223,255,0,.08), 0 18px 36px rgba(0,0,0,.44);
+  animation:none;
+}
+.home-live-tag,.progress-chip,.exec-metric-card,.exec-load-input,.exec-load-panel,.progress-ex-card,
+body.theme-light .home-live-tag,body.theme-light .progress-chip,body.theme-light .exec-metric-card,body.theme-light .exec-load-input,body.theme-light .exec-load-panel,body.theme-light .progress-ex-card{
+  background:#101010;
+  border:1px solid var(--line);
+}
+.exec-load-panel{box-shadow:none;}
+.routine-menu-item:hover,.custom-select-list li:hover{background:rgba(223,255,0,.08);color:var(--accent);}
+.library-footer-sticky{background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.88) 28%, rgba(0,0,0,.98) 100%);}
+body.theme-light .library-footer-sticky{background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.88) 28%, rgba(0,0,0,.98) 100%);}
+.quick-btn{justify-content:flex-start;align-items:flex-start;}
+.quick-btn .t,.section-title,.title{color:#fff;}
+.danger-btn,
+body.theme-light .danger-btn{
+  background:#1a1a1a;
+  color:#ff7f95;
+  border:1px solid rgba(255,77,109,.22);
+  box-shadow:none;
+}
+.danger-btn:hover{background:#201012;box-shadow:none;}
+.home-stat.full{background:linear-gradient(180deg, rgba(223,255,0,.09), rgba(18,18,18,.98));}
+.sheet{border-top:1px solid rgba(223,255,0,.18);}
+.modal-backdrop{background:rgba(0,0,0,.72);backdrop-filter:blur(10px);}
+.hero .small,.eyebrow,.label,.home-live-title,.home-stat .k,.timer-panel .timer-label{color:#9b9b9b;}
+.section-link{color:var(--accent);font-weight:800;}
+.hist-time{color:var(--accent);}
+body.theme-light .title,body.theme-light .section-title,body.theme-light .routine-title,body.theme-light .patient-name,body.theme-light .exercise-name,body.theme-light .hero .main,body.theme-light .home-greeting .hello,body.theme-light .home-live-name,body.theme-light #execPatientName,body.theme-light #profileName,body.theme-light .session-time,body.theme-light .digital,body.theme-light .subtitle,body.theme-light .mini,body.theme-light .detail-row .k,body.theme-light .home-greeting .sub,body.theme-light .hero .meta,body.theme-light .stat .label,body.theme-light .bex-prescription,body.theme-light .note-box,body.theme-light .tag,body.theme-light .detail-row .v,body.theme-light .exec-prev-line{color:inherit;}
+@keyframes kineproFadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media (max-width:599px){
+  .screen{padding-left:14px;padding-right:14px;}
+  .digital{font-size:3.5rem;}
+  .bottom-nav{margin:0 8px calc(8px + var(--bottomSafe));}
+}
+@media (min-width:1025px){
+  .bottom-nav,
+  body.theme-light .bottom-nav{
+    background:rgba(0,0,0,.88);
+    border-right:1px solid rgba(255,255,255,.06);
+  }
+  .bottom-nav::before{
+    color:var(--accent);
+    font-family:var(--font-head);
+    letter-spacing:.18em;
+  }
+}
+
+
+/* === Execution circular timer + expanded settings === */
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.circular-timer {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(0, 212, 240, 0.05) 0%, transparent 70%);
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.timer-ring {
+  --ring-rotation: 0deg;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4px solid rgba(0, 212, 240, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.timer-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  border-top-color: transparent;
+  border-left-color: transparent;
+  filter: drop-shadow(0 0 8px var(--accent));
+  animation: pulse-glow 2s ease-in-out infinite;
+  transform: rotate(var(--ring-rotation));
+  transition: transform .25s linear;
+}
+
+.timer-content {
+  text-align: center;
+  z-index: 5;
+}
+
+.timer-content .digital {
+  font-size: 3.8rem;
+  margin: 5px 0;
+  background: linear-gradient(180deg, #ffffff 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.timer-content .timer-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+.execution-progress {
+  width: 100%;
+  max-width: 320px;
+}
+
+.accent-text {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 5px var(--accent)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 15px var(--accent)); }
+}
+
+@media (min-width: 600px) {
+  .sheet {
+    max-width: 680px;
+  }
+}
+
+body.theme-light .system-card,
+body.theme-light .rpg-card,
+body.theme-light .system-xp-circle {
+  background: white;
+  border-color: rgba(0, 153, 187, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+body.theme-light .system-xp-circle::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+body.theme-light .digital {
+  background: linear-gradient(180deg, #101722 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+#sheetSettings .settings-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 599px) {
+  #sheetSettings .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1025px) {
+  .circular-timer { width: 320px; height: 320px; }
+  .timer-content .digital { font-size: 5rem; }
+}
+
 </style>
 </head>
 <body>
@@ -1145,12 +1584,27 @@ body.theme-light .bottom-nav{
         <div class="brand"><div class="avatar">⏱</div><div><div class="eyebrow">Sesión activa</div><div class="title" id="execPatientName">Sin sesión activa</div><div class="subtitle" id="execRoutineName">Selecciona una rutina desde Rutinas</div></div></div>
         <button class="icon-btn" id="resetSessionBtn">↺</button>
       </div>
-      <div class="timer-panel">
-        <div class="timer-label">Tiempo de sesión actual</div>
-        <div class="digital" id="executionTimer">00:00</div>
-        <div class="badge paused" id="sessionState">Sin iniciar</div>
-        <div class="progress-wrap"><div class="progress-head"><span class="mini">Progreso global</span><span id="progressText">0%</span></div><div class="progress-bar"><span id="progressFill"></span></div></div>
-        <div class="row" style="margin-top:14px;justify-content:center"><span class="badge warning hidden" id="hourNoticeBadge">60 min alcanzados</span></div>
+      <div class="timer-container">
+        <div class="circular-timer">
+          <div class="timer-ring" id="executionTimerRing">
+            <div class="timer-content">
+              <div class="timer-label">Tiempo de Sesión</div>
+              <div class="digital" id="executionTimer">00:00</div>
+              <div class="badge paused" id="sessionState">Sin iniciar</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="progress-wrap execution-progress">
+          <div class="progress-head">
+            <span class="mini">PROGRESO GLOBAL</span>
+            <span id="progressText" class="accent-text">0%</span>
+          </div>
+          <div class="progress-bar"><span id="progressFill"></span></div>
+          <div class="row" style="margin-top:12px; justify-content:center">
+            <span class="badge warning hidden" id="hourNoticeBadge">60 MIN ALCANZADOS</span>
+          </div>
+        </div>
       </div>
       <div class="section-head"><div class="section-title">Ejercicios del bloque actual</div><button class="section-link" onclick="notify('Registrar observación')">Registrar observación</button></div>
       <div id="executionExercises"></div>
@@ -1230,28 +1684,119 @@ body.theme-light .bottom-nav{
       </div>
 
       <div id="sheetSettings" class="sheet-view hidden">
-        <div class="between" style="margin-bottom:14px"><div><div class="eyebrow">Configuración</div><div class="title">Personalización de la app</div></div><button class="icon-btn close-sheet">✕</button></div>
-        <div class="field">
-          <label class="label">Nombre del usuario</label>
-          <div class="input"><input id="settingsUserName" type="text" placeholder="Ej. Dr. Ríos"></div>
+        <div class="between" style="margin-bottom:24px">
+          <div>
+            <div class="eyebrow">Configuración Pro</div>
+            <div class="title">Personalización del Sistema</div>
+          </div>
+          <button class="icon-btn close-sheet">✕</button>
         </div>
-        <div class="field">
-          <label class="label">Tema</label>
-          <div class="row" style="gap:8px;flex-wrap:wrap">
-            <button class="chip active" id="themeDarkBtn">Oscuro</button>
-            <button class="chip" id="themeLightBtn">Claro</button>
+
+        <div class="grid2 settings-grid" style="align-items: start;">
+          <div class="field">
+            <label class="label">Identidad Profesional</label>
+            <div class="input"><input id="settingsUserName" type="text" placeholder="Tu nombre o clínica"></div>
+            <label class="label" style="margin-top:10px">Idioma del Sistema</label>
+            <div class="select">
+              <select id="settingsLang">
+                <option value="es">Español (AR)</option>
+                <option value="en">English (US)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Apariencia y Tema</label>
+            <div class="segmented">
+              <button class="seg-btn" id="themeDarkBtn" type="button">Oscuro</button>
+              <button class="seg-btn" id="themeLightBtn" type="button">Claro</button>
+            </div>
+            <label class="label" style="margin-top:10px">Color de Acento (Neón)</label>
+            <div class="row" style="gap:8px; flex-wrap:wrap">
+              <button class="chip color-choice" type="button" data-color="#00d4f0">Celeste</button>
+              <button class="chip color-choice" type="button" data-color="#53efb9">Esmeralda</button>
+              <button class="chip color-choice" type="button" data-color="#bd00ff">Violeta</button>
+              <button class="chip color-choice" type="button" data-color="#ffb84d">Ámbar</button>
+            </div>
           </div>
         </div>
-        <div class="field">
-          <label class="label">Color principal</label>
-          <div class="row" style="gap:8px;flex-wrap:wrap">
-            <button class="chip active color-choice" data-color="#53efb9">Verde</button>
-            <button class="chip color-choice" data-color="#55c6ff">Celeste</button>
-            <button class="chip color-choice" data-color="#b380ff">Violeta</button>
-            <button class="chip color-choice" data-color="#ff8a65">Coral</button>
+
+        <div class="system-card" style="margin-top:10px">
+          <label class="label">Preferencias de Sesión</label>
+          <div class="row" style="justify-content: space-between; margin-top:10px">
+            <div class="mini">Alertas de sonido (Timer)</div>
+            <button class="chip active" id="soundAlertsBtn" type="button">Activado</button>
+          </div>
+          <div class="row" style="justify-content: space-between; margin-top:12px">
+            <div class="mini">Notificación de 60 minutos</div>
+            <button class="chip active" id="hourNoticeToggleBtn" type="button">Activado</button>
           </div>
         </div>
-        <div class="footer-actions single"><button class="primary-btn" onclick="saveSettings()">Guardar configuración</button></div>
+
+        <div class="footer-actions single" style="margin-top:20px">
+          <button class="primary-btn" onclick="saveSettings()">Aplicar Cambios</button>
+        </div>
+      </div>
+
+      <div id="sheetPatientForm" class="sheet-view hidden">
+        <div class="between" style="margin-bottom:20px">
+          <div>
+            <div class="eyebrow">Onboarding Clínico</div>
+            <div class="title">Nuevo Perfil</div>
+          </div>
+          <button class="icon-btn close-sheet">✕</button>
+        </div>
+
+        <div class="field">
+          <label class="label">Datos Personales</label>
+          <div class="input"><input id="regName" type="text" placeholder="Nombre completo"></div>
+          <div class="input"><input id="regEmail" type="email" placeholder="Email"></div>
+          <div class="input"><input id="regPhone" type="tel" placeholder="Teléfono"></div>
+        </div>
+
+        <div class="grid3">
+          <div class="field">
+            <label class="label">Edad</label>
+            <div class="input"><input id="regAge" type="number" placeholder="30"></div>
+          </div>
+          <div class="field">
+            <label class="label">Peso (kg)</label>
+            <div class="input"><input id="regWeight" type="number" placeholder="70"></div>
+          </div>
+          <div class="field">
+            <label class="label">Altura (cm)</label>
+            <div class="input"><input id="regHeight" type="number" placeholder="175"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Nivel de Actividad Física</label>
+          <div class="segmented">
+            <button class="seg-btn active" type="button" data-reglevel="Principiante">Principiante</button>
+            <button class="seg-btn" type="button" data-reglevel="Intermedio">Intermedio</button>
+            <button class="seg-btn" type="button" data-reglevel="Avanzado">Avanzado</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Objetivo Clínico Principal</label>
+          <div class="tags" id="regGoals">
+            <button class="chip" type="button" onclick="this.classList.toggle('active')">Rehabilitación</button>
+            <button class="chip" type="button" onclick="this.classList.toggle('active')">Manejo de Dolor</button>
+            <button class="chip" type="button" onclick="this.classList.toggle('active')">Movilidad</button>
+            <button class="chip" type="button" onclick="this.classList.toggle('active')">Estabilidad</button>
+            <button class="chip" type="button" onclick="this.classList.toggle('active')">Retorno Deportivo</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Antecedentes y Notas</label>
+          <textarea class="textarea" id="regNotes" placeholder="Indicar cirugías, lesiones previas o limitaciones..."></textarea>
+        </div>
+
+        <div class="footer-actions single">
+          <button class="primary-btn" type="button" onclick="processNewPatient()">Finalizar Registro</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1368,7 +1913,7 @@ function initCloudSync() {
 }
 
 const state = {
-  settings: { userName:'Dr. Ruiz', theme:'dark', accent:'#53efb9' },
+  settings: { userName:'Dr. Ruiz', theme:'dark', accent:'#00d4f0', lang:'es', soundAlerts:true, hourNotice:true },
   patients: [
     {id:'p1',name:'Marta Gómez',age:29,phone:'+54 299 555 1020',email:'marta.gomez@email.com',phase:'Reacondicionamiento inicial',antecedentes:'Reconstrucción LCA, sin comorbilidades relevantes',observaciones:'Buena adherencia. Déficit leve en extensión terminal.',history:[{date:'29/03/2026',duration:'33 min',summary:'Persistió rigidez inicial. Mejoró al final de la sesión.'},{date:'31/03/2026',duration:'35 min',summary:'Mejor control en SLR. Toleró 2.5 kg sin dolor.'}]},
     {id:'p2',name:'Juan Molina',age:34,phone:'+54 299 555 9811',email:'juan.molina@email.com',phase:'Movilidad y control motor',antecedentes:'Lumbalgia mecánica recurrente',observaciones:'Buena adherencia. Molestia residual a la flexión sostenida.',history:[]},
@@ -1397,6 +1942,15 @@ let libraryTargetBuilder = false;
 let settingsAccent = state.settings.accent;
 let librarySelected = new Set();
 let builderPatientSelectBound = false;
+state.settings = {
+  userName: state.settings?.userName || 'Dr. Ruiz',
+  theme: state.settings?.theme || 'dark',
+  accent: state.settings?.accent || '#00d4f0',
+  lang: state.settings?.lang || 'es',
+  soundAlerts: state.settings?.soundAlerts !== false,
+  hourNotice: state.settings?.hourNotice !== false
+};
+settingsAccent = state.settings.accent;
 function syncBuilderRoutineNameWithPatient(patientId) {
   const patient = state.patients.find(p => p.id === patientId);
   if (!patient) return;
@@ -1530,10 +2084,47 @@ function escapeHtml(str) {
 }
 
 function applySettings() {
-  document.getElementById('brandUserName').textContent = 'Hola, ' + state.settings.userName;
+  state.settings = {
+    userName: state.settings?.userName || 'Dr. Ruiz',
+    theme: state.settings?.theme || 'dark',
+    accent: state.settings?.accent || '#00d4f0',
+    lang: state.settings?.lang || 'es',
+    soundAlerts: state.settings?.soundAlerts !== false,
+    hourNotice: state.settings?.hourNotice !== false
+  };
+
+  const brandUserName = document.getElementById('brandUserName');
+  if (brandUserName) brandUserName.textContent = 'Hola, ' + state.settings.userName;
+
   document.body.classList.toggle('theme-light', state.settings.theme === 'light');
   document.documentElement.style.setProperty('--accent', state.settings.accent);
   document.documentElement.style.setProperty('--accent2', state.settings.accent);
+
+  const darkBtn = document.getElementById('themeDarkBtn');
+  const lightBtn = document.getElementById('themeLightBtn');
+  if (darkBtn) darkBtn.classList.toggle('active', state.settings.theme === 'dark');
+  if (lightBtn) lightBtn.classList.toggle('active', state.settings.theme === 'light');
+
+  const langSelect = document.getElementById('settingsLang');
+  if (langSelect) langSelect.value = state.settings.lang;
+
+  document.querySelectorAll('.color-choice').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.color === state.settings.accent);
+  });
+
+  const soundAlertsBtn = document.getElementById('soundAlertsBtn');
+  if (soundAlertsBtn) {
+    soundAlertsBtn.classList.toggle('active', !!state.settings.soundAlerts);
+    soundAlertsBtn.textContent = state.settings.soundAlerts ? 'Activado' : 'Desactivado';
+  }
+
+  const hourNoticeToggleBtn = document.getElementById('hourNoticeToggleBtn');
+  if (hourNoticeToggleBtn) {
+    hourNoticeToggleBtn.classList.toggle('active', !!state.settings.hourNotice);
+    hourNoticeToggleBtn.textContent = state.settings.hourNotice ? 'Activado' : 'Desactivado';
+  }
+
+  if (typeof renderAll === 'function') renderAll();
 }
 
 function showScreen(name) {
@@ -1555,26 +2146,38 @@ document.querySelectorAll('[data-routetab]').forEach(btn => btn.addEventListener
 }));
 
 const sheetBackdrop = document.getElementById('sheetBackdrop');
+function hideAllSheetViews() {
+  document.querySelectorAll('.sheet-view').forEach(view => view.classList.add('hidden'));
+}
+function resetPatientForm() {
+  document.querySelectorAll('#sheetPatientForm input, #sheetPatientForm textarea').forEach(field => field.value = '');
+  document.querySelectorAll('[data-reglevel]').forEach(btn => btn.classList.toggle('active', btn.dataset.reglevel === 'Principiante'));
+  document.querySelectorAll('#regGoals .chip').forEach(chip => chip.classList.remove('active'));
+}
 function openLibrary(forBuilder=false) {
   libraryTargetBuilder = !!forBuilder;
   librarySelected.clear();
+  hideAllSheetViews();
   document.getElementById('sheetLibrary').classList.remove('hidden');
-  document.getElementById('sheetSettings').classList.add('hidden');
   sheetBackdrop.classList.add('open');
   renderLibraryItems();
 }
 function openSettings() {
+  hideAllSheetViews();
   document.getElementById('sheetSettings').classList.remove('hidden');
-  document.getElementById('sheetLibrary').classList.add('hidden');
-  document.getElementById('settingsUserName').value = state.settings.userName;
-  document.getElementById('themeDarkBtn').classList.toggle('active', state.settings.theme === 'dark');
-  document.getElementById('themeLightBtn').classList.toggle('active', state.settings.theme === 'light');
-  document.querySelectorAll('.color-choice').forEach(btn => btn.classList.toggle('active', btn.dataset.color === state.settings.accent));
+  document.getElementById('settingsUserName').value = state.settings.userName || 'Dr. Ruiz';
+  const langSelect = document.getElementById('settingsLang');
+  if (langSelect) langSelect.value = state.settings.lang || 'es';
+  applySettings();
   sheetBackdrop.classList.add('open');
 }
 function closeSheet() { sheetBackdrop.classList.remove('open'); }
 document.querySelectorAll('.close-sheet').forEach(btn => btn.addEventListener('click', closeSheet));
 sheetBackdrop.addEventListener('click', e => { if (e.target === sheetBackdrop) closeSheet(); });
+document.querySelectorAll('[data-reglevel]').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('[data-reglevel]').forEach(item => item.classList.remove('active'));
+  btn.classList.add('active');
+}));
 
 document.getElementById('themeDarkBtn').addEventListener('click', ()=> {
   state.settings.theme = 'dark';
@@ -1598,9 +2201,25 @@ document.querySelectorAll('.color-choice').forEach(btn => btn.addEventListener('
   markDirty();
 }));
 
+document.getElementById('soundAlertsBtn').addEventListener('click', ()=> {
+  state.settings.soundAlerts = !state.settings.soundAlerts;
+  applySettings();
+  markDirty();
+});
+document.getElementById('hourNoticeToggleBtn').addEventListener('click', ()=> {
+  state.settings.hourNotice = !state.settings.hourNotice;
+  applySettings();
+  markDirty();
+});
+
 function saveSettings() {
+  state.settings.userName = document.getElementById('settingsUserName').value.trim() || 'Dr. Ruiz';
+  const langSelect = document.getElementById('settingsLang');
+  state.settings.lang = langSelect ? langSelect.value : (state.settings.lang || 'es');
+  applySettings();
   closeSheet();
   markDirty();
+  notify('Configuración del sistema actualizada');
 }
 
 function getActiveLibraryExercises() {
@@ -1779,17 +2398,81 @@ function editableField(patientId, field, label, value, suffix='') {
 function renderPatientProfile() {
   const p = state.patients.find(x => x.id === state.currentProfileId);
   if (!p) return;
+
+  const history = Array.isArray(p.history) ? p.history : [];
+  const lvl = Math.max(1, history.length);
+  const totalEx = history.reduce((acc, h) => acc + (Array.isArray(h.exerciseLogs) ? h.exerciseLogs.length : 0), 0);
+  const xp = Math.min(100, totalEx * 2.5);
+  const fuerza = Math.min(100, lvl * 10);
+  const movilidad = xp;
+  const control = Math.min(100, lvl * 8);
+
   document.getElementById('profileName').textContent = p.name;
-  document.getElementById('profileDetails').innerHTML = `<div class="detail-list">${editableField(p.id, 'age', 'Edad', p.age, ' años')}${editableField(p.id, 'phone', 'Teléfono', p.phone)}${editableField(p.id, 'email', 'Email', p.email)}${editableField(p.id, 'phase', 'Fase', p.phase)}${editableField(p.id, 'antecedentes', 'Antecedentes', p.antecedentes)}${editableField(p.id, 'observaciones', 'Observaciones', p.observaciones)}</div>`;
+  document.getElementById('profileDetails').innerHTML = `
+    <div class="system-container">
+      <div class="system-header">
+        <div class="lvl-badge">LVL.${lvl}</div>
+        <div style="flex:1;min-width:0">
+          <div class="eyebrow" style="color:var(--accent)">Estatus: ${p.phase || 'Sin fase'}</div>
+          <div class="title" style="font-size:1.4rem">${p.name}</div>
+        </div>
+        <div class="avatar system-avatar">${p.name.split(' ').map(x => x[0]).slice(0,2).join('')}</div>
+      </div>
+
+      <div class="system-card">
+        <div class="xp-label"><span>Progreso de fase (XP)</span><span>${roundMetric(xp,0)}%</span></div>
+        <div class="progress-bar"><span style="width:${xp}%"></span></div>
+      </div>
+
+      <div class="skill-grid">
+        <div class="system-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+          <div class="digital" style="font-size:2.8rem;margin:0;">${roundMetric(xp,0)}%</div>
+          <div class="eyebrow" style="font-size:.6rem">Objetivo total</div>
+        </div>
+        <div class="system-card">
+          <div class="xp-label"><span>Fuerza</span><span>${roundMetric(fuerza,0)}%</span></div>
+          <div class="progress-bar" style="height:4px;margin-bottom:10px;"><span style="width:${fuerza}%"></span></div>
+          <div class="xp-label"><span>Movilidad</span><span>${roundMetric(movilidad,0)}%</span></div>
+          <div class="progress-bar" style="height:4px;margin-bottom:10px;"><span style="width:${movilidad}%"></span></div>
+          <div class="xp-label"><span>Control</span><span>${roundMetric(control,0)}%</span></div>
+          <div class="progress-bar" style="height:4px;"><span style="width:${control}%"></span></div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-list">
+          ${editableField(p.id, 'age', 'Edad', p.age, ' años')}
+          ${editableField(p.id, 'phone', 'Teléfono', p.phone)}
+          ${editableField(p.id, 'email', 'Email', p.email)}
+          ${editableField(p.id, 'phase', 'Fase', p.phase)}
+          ${editableField(p.id, 'antecedentes', 'Antecedentes', p.antecedentes)}
+          ${editableField(p.id, 'observaciones', 'Observaciones', p.observaciones)}
+        </div>
+      </div>
+    </div>
+  `;
+
   const routines = state.routines.filter(r => r.patientId === p.id && !r.template);
   document.getElementById('profileRoutines').innerHTML = routines.map(r => `<div class="routine-card"><div class="between"><div><div class="routine-title">${r.name}</div><div class="mini">${r.exercises.length} ejercicios</div></div><div class="row" style="gap:8px"><button class="action-pill" onclick="loadRoutineToBuilder('${r.id}')">Editar</button><button class="action-pill start" onclick="startRoutine('${r.id}')">Iniciar sesión</button></div></div></div>`).join('') || '<div class="detail-card"><div class="mini">Sin rutinas asociadas.</div></div>';
+
   const milestonesMarkup = renderProgressMilestones(p);
-  const historyMarkup = p.history.length ? p.history.map(h => {
+  const historyMarkup = history.length ? history.map(h => {
     const measured = Array.isArray(h.exerciseLogs) ? h.exerciseLogs.filter(log => Number(log.oneRM) > 0) : [];
     const metricPills = measured.slice(0, 4).map(log => `<span class="history-metric">${log.name}: ${roundMetric(log.oneRM,1)} kg</span>`).join('');
-    return `<div class="routine-card"><div class="between"><div><div class="hist-date">${h.date} <span class="hist-time">· ${h.startTime || ''}</span></div><div class="mini">${h.summary}</div>${metricPills ? `<div class="history-metrics">${metricPills}</div>` : ''}</div><span class="badge">${h.duration}</span></div></div>`;
-  }).join('') : '<div class="detail-card"><div class="mini">Aún no hay sesiones finalizadas.</div></div>';
-  document.getElementById('profileHistory').innerHTML = `<div class="section-head" style="margin-top:0"><div class="section-title">Hitos de progreso</div></div>${milestonesMarkup}<div class="section-head"><div class="section-title">Sesiones registradas</div></div>${historyMarkup}`;
+    return `
+      <div class="routine-card" style="border-left:2px solid var(--accent)">
+        <div class="between">
+          <div>
+            <div class="hist-time">${h.date} · ${h.startTime || '--:--'}</div>
+            <div class="routine-title" style="font-size:.9rem">${h.summary}</div>
+            ${metricPills ? `<div class="history-metrics">${metricPills}</div>` : ''}
+          </div>
+          <span class="badge active">${h.duration}</span>
+        </div>
+      </div>`;
+  }).join('') : '<div class="detail-card"><div class="mini">Sin misiones completadas.</div></div>';
+
+  document.getElementById('profileHistory').innerHTML = `<div class="section-head" style="margin-top:0"><div class="section-title">Hitos de progreso</div></div>${milestonesMarkup}<div class="section-head"><div class="section-title">Log de misiones</div></div>${historyMarkup}`;
 }
 
 function activateFieldEdit(pid, field) {
@@ -1878,6 +2561,10 @@ function parseReps(presc) {
   const m = (presc || '').match(/(\d+)\s*rep/i);
   return m ? m[1] : '10';
 }
+function parseWeight(presc) {
+  const m = (presc || '').match(/(\d+(?:[.,]\d+)?)\s*kg/i);
+  return m ? String(m[1]).replace(',', '.') : '0';
+}
 function editPrescription(idx) {
   document.querySelectorAll('.presc-editor').forEach(e => e.classList.add('hidden'));
   const editor = document.getElementById(`presc-editor-${idx}`);
@@ -1890,8 +2577,11 @@ function closePrescEditor(idx) {
 function savePrescription(idx) {
   const sets = document.getElementById(`presc-sets-${idx}`).value;
   const reps = document.getElementById(`presc-reps-${idx}`).value;
+  const weightRaw = document.getElementById(`presc-weight-${idx}`).value;
   const note = document.getElementById(`presc-note-${idx}`).value.trim();
-  state.builder.exercises[idx].prescription = `${sets} sets · ${reps} reps`;
+  const weight = String(weightRaw || '0').replace(',', '.');
+  state.builder.exercises[idx].prescription = `${sets} sets · ${reps} reps · ${weight} kg`;
+  state.builder.exercises[idx].weight = Number(weight) || 0;
   state.builder.exercises[idx].notes = note;
   renderBuilder();
   markDirty();
@@ -1909,7 +2599,7 @@ function renderBuilder() {
   document.getElementById('builderRoutineName').value = state.builder.name;
   document.getElementById('builderObservations').value = state.builder.observations;
   document.getElementById('builderCount').textContent = `${state.builder.exercises.length} ejercicios`;
-  document.getElementById('builderExercises').innerHTML = state.builder.exercises.length ? state.builder.exercises.map((e,i)=> `<div class="sheet-card builder-ex-item" id="bex-${i}"><div class="between"><div><div class="routine-title">${e.name}</div><div class="bex-prescription" id="bex-presc-${i}" onclick="editPrescription(${i})">${e.prescription || 'Sin dosificación'} ✎</div></div><button class="action-pill delete" onclick="removeBuilderExercise(${i})">Quitar</button></div><div class="presc-editor hidden" id="presc-editor-${i}"><div class="presc-inputs"><div class="presc-field"><label>Series</label><input type="number" min="1" max="20" id="presc-sets-${i}" value="${parseSets(e.prescription)}" class="presc-input"></div><div class="presc-field"><label>Reps</label><input type="number" min="1" max="100" id="presc-reps-${i}" value="${parseReps(e.prescription)}" class="presc-input"></div><div class="presc-field"><label>Nota</label><input type="text" id="presc-note-${i}" value="${escapeHtml(e.notes || '')}" placeholder="ej: banda amarilla" class="presc-input"></div></div><div class="presc-actions"><button class="field-save-btn" onclick="savePrescription(${i})">✓ Guardar</button><button class="field-cancel-btn" onclick="closePrescEditor(${i})">Cancelar</button></div></div></div>`).join('') : '<div class="detail-card"><div class="mini">Aún no agregaste ejercicios.</div></div>';
+  document.getElementById('builderExercises').innerHTML = state.builder.exercises.length ? state.builder.exercises.map((e,i)=> `<div class="sheet-card builder-ex-item" id="bex-${i}"><div class="between"><div><div class="routine-title">${e.name}</div><div class="bex-prescription" id="bex-presc-${i}" onclick="editPrescription(${i})">${e.prescription || 'Sin dosificación'} ✎</div></div><button class="action-pill delete" onclick="removeBuilderExercise(${i})">Quitar</button></div><div class="presc-editor hidden" id="presc-editor-${i}"><div class="presc-inputs"><div class="presc-field"><label>Series</label><input type="number" min="1" max="20" id="presc-sets-${i}" value="${parseSets(e.prescription)}" class="presc-input"></div><div class="presc-field"><label>Reps</label><input type="number" min="1" max="100" id="presc-reps-${i}" value="${parseReps(e.prescription)}" class="presc-input"></div><div class="presc-field"><label>Peso (kg)</label><input type="number" min="0" step="0.5" id="presc-weight-${i}" value="${e.weight ?? parseWeight(e.prescription)}" class="presc-input" placeholder="0"></div></div><div class="presc-field" style="margin-top:10px"><label>Nota</label><input type="text" id="presc-note-${i}" value="${escapeHtml(e.notes || '')}" placeholder="ej: banda amarilla" class="presc-input"></div><div class="presc-actions" style="margin-top:12px"><button class="field-save-btn" onclick="savePrescription(${i})">✓ Guardar</button><button class="field-cancel-btn" onclick="closePrescEditor(${i})">Cancelar</button></div></div></div>`).join('') : '<div class="detail-card"><div class="mini">Aún no agregaste ejercicios.</div></div>';
 }
 window.editPrescription = editPrescription;
 window.savePrescription = savePrescription;
@@ -1939,6 +2629,8 @@ function renderExecution() {
     badge.className = 'badge paused';
     fill.style.width = '0%';
     text.textContent = '0%';
+    const ring = document.getElementById('executionTimerRing');
+    if (ring) ring.style.setProperty('--ring-rotation', '0deg');
     hour.classList.add('hidden');
     list.innerHTML = state.activeSessions.length
       ? state.activeSessions.map(sess => `<div class="routine-card" style="margin-bottom:12px"><div class="between"><div><div class="routine-title">${sess.patientName}</div><div class="mini">${sess.routineName}</div></div><button class="action-pill start" onclick="openSession('${sess.id}')">Abrir</button></div></div>`).join('')
@@ -1950,7 +2642,9 @@ function renderExecution() {
   timer.textContent = formatTime(s.seconds);
   badge.textContent = s.running ? 'Sesión activa' : 'Sesión pausada';
   badge.className = 'badge ' + (s.running ? 'active' : 'paused');
-  hour.classList.toggle('hidden', !s.reached60);
+  hour.classList.toggle('hidden', !(state.settings.hourNotice !== false && s.reached60));
+  const ring = document.getElementById('executionTimerRing');
+  if (ring) ring.style.setProperty('--ring-rotation', `${(s.seconds % 60) * 6}deg`);
   const pct = Math.round((s.exercises.filter(e=>e.completed).length / Math.max(s.exercises.length,1))*100);
   fill.style.width = pct + '%';
   text.textContent = pct + '%';
@@ -2030,15 +2724,40 @@ function finishSession() {
 }
 
 function createPatient() {
-  const id = 'p' + Date.now();
-  const num = state.patients.length + 1;
-  state.patients.unshift({
-    id, name:'Paciente ' + num, age:30, phone:'+54 299 000 000' + num, email:'paciente'+num+'@email.com',
-    phase:'Evaluación inicial', antecedentes:'Sin antecedentes cargados', observaciones:'Paciente creado manualmente.', history:[]
-  });
+  hideAllSheetViews();
+  document.getElementById('sheetPatientForm').classList.remove('hidden');
+  resetPatientForm();
+  sheetBackdrop.classList.add('open');
+}
+
+function processNewPatient() {
+  const name = document.getElementById('regName').value.trim();
+  if (!name) { notify('El nombre es obligatorio'); return; }
+
+  const activeLevel = document.querySelector('[data-reglevel].active')?.dataset.reglevel || 'Intermedio';
+  const selectedGoals = Array.from(document.querySelectorAll('#regGoals .chip.active')).map(chip => chip.textContent.trim());
+
+  const newPatient = {
+    id: 'p' + Date.now(),
+    name,
+    age: Number(document.getElementById('regAge').value) || 30,
+    phone: document.getElementById('regPhone').value.trim() || 'Sin teléfono',
+    email: document.getElementById('regEmail').value.trim() || 'Sin email',
+    weight: document.getElementById('regWeight').value.trim(),
+    height: document.getElementById('regHeight').value.trim(),
+    phase: activeLevel,
+    antecedentes: `Objetivos: ${selectedGoals.join(', ') || 'General'}.`,
+    observaciones: document.getElementById('regNotes').value.trim() || 'Paciente registrado vía onboarding.',
+    history: []
+  };
+
+  state.patients.unshift(newPatient);
+  closeSheet();
+  resetPatientForm();
   renderAll();
   markDirty();
   showScreen('patients');
+  notify('Paciente registrado con éxito');
 }
 
 function editPatient(id) {
@@ -2189,7 +2908,7 @@ document.getElementById('routineSearch').addEventListener('input', renderRoutine
 document.getElementById('patientSearch').addEventListener('input', renderPatients);
 document.getElementById('builderRoutineName').addEventListener('input', e => { state.builder.name = e.target.value; markDirty(900); });
 document.getElementById('builderObservations').addEventListener('input', e => { state.builder.observations = e.target.value; markDirty(900); });
-document.getElementById('settingsUserName').addEventListener('input', e => { state.settings.userName = e.target.value.trim() || 'Dr. Ríos'; applySettings(); markDirty(900); });
+document.getElementById('settingsUserName').addEventListener('input', e => { state.settings.userName = e.target.value.trim() || 'Dr. Ruiz'; applySettings(); markDirty(900); });
 document.getElementById('pauseBtn').addEventListener('click', ()=>{ const s=getCurrentSession(); if(s){ s.running=false; renderExecution(); renderHome(); markDirty(); } });
 document.getElementById('resumeBtn').addEventListener('click', ()=>{ const s=getCurrentSession(); if(s){ s.running=true; renderExecution(); renderHome(); markDirty(); } });
 document.getElementById('resetSessionBtn').addEventListener('click', ()=>{ const s=getCurrentSession(); if(s){ s.seconds=0; s.reached60=false; state.hourAlertShown=false; s.exercises.forEach(e=>{ e.completed=false; e.pesoReal=''; e.repsReales=''; e.oneRM=0; e.volumen=0; e.prevOneRM=0; e.dataOpen=false; e.fatigueFlag=false; }); renderAll(); markDirty(); } });
@@ -2258,6 +2977,7 @@ window.openLibrary = openLibrary;
 window.openSettings = openSettings;
 window.saveSettings = saveSettings;
 window.createPatient = createPatient;
+window.processNewPatient = processNewPatient;
 window.editPatient = editPatient;
 window.editCurrentPatient = editCurrentPatient;
 window.duplicatePatient = duplicatePatient;
