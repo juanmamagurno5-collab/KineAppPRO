@@ -2275,6 +2275,84 @@ function syncBuilderRoutineNameWithPatient(patientId) {
 
 function notify(msg){ console.log(msg); }
 
+
+const ACTIVE_SESSION_STORAGE_KEY = 'kinepro_active_session_runtime_v1';
+
+function cloneRuntimeSession(session) {
+  if (!session) return null;
+  return JSON.parse(JSON.stringify(session));
+}
+
+function getRuntimePersistedSession() {
+  try {
+    const raw = localStorage.getItem(ACTIVE_SESSION_STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    return data && typeof data === 'object' ? data : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+function clearRuntimePersistedSession() {
+  try { localStorage.removeItem(ACTIVE_SESSION_STORAGE_KEY); } catch (err) {}
+}
+
+function persistCurrentSessionRuntime() {
+  try {
+    const session = getCurrentSession();
+    if (!session || !session.id) {
+      clearRuntimePersistedSession();
+      return;
+    }
+    const payload = cloneRuntimeSession(session);
+    payload.persistedAt = Date.now();
+    payload.lastRuntimeSyncAt = Date.now();
+    localStorage.setItem(ACTIVE_SESSION_STORAGE_KEY, JSON.stringify(payload));
+  } catch (err) {}
+}
+
+function syncSessionElapsedTime(session) {
+  if (!session || !session.running) return session;
+  const now = Date.now();
+  const base = Number(session.lastRuntimeSyncAt || session.persistedAt || session.startedAt || now);
+  const diffMs = Math.max(0, now - base);
+  const extraSeconds = Math.floor(diffMs / 1000);
+  if (extraSeconds > 0) {
+    session.seconds = Number(session.seconds || 0) + extraSeconds;
+    session.lastRuntimeSyncAt = base + (extraSeconds * 1000);
+    session.updatedAt = now;
+    if (!session.reached60 && session.seconds >= 3600) {
+      session.reached60 = true;
+    }
+  } else {
+    session.lastRuntimeSyncAt = now;
+  }
+  return session;
+}
+
+function restorePersistedSessionRuntime() {
+  const saved = getRuntimePersistedSession();
+  if (!saved || !saved.id) return;
+
+  const restored = syncSessionElapsedTime(saved);
+
+  const idx = state.activeSessions.findIndex(s => s.id === restored.id);
+  if (idx >= 0) {
+    state.activeSessions[idx] = {
+      ...state.activeSessions[idx],
+      ...restored,
+      exercises: Array.isArray(restored.exercises) ? restored.exercises : state.activeSessions[idx].exercises
+    };
+  } else {
+    state.activeSessions.unshift(restored);
+  }
+
+  state.currentSessionId = restored.id;
+  state.hourAlertShown = !!restored.reached60;
+}
+
+
 function toNumber(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n : 0;
@@ -2987,10 +3065,14 @@ function startRoutine(id) {
     running:true,
     reached60:false,
     startTime:new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' }),
+    startedAt:Date.now(),
+    updatedAt:Date.now(),
+    lastRuntimeSyncAt:Date.now(),
     exercises:r.exercises.map(e => ({...e, completed:false, pesoReal:'', repsReales:'', oneRM:0, volumen:0, prevOneRM:0, dataOpen:false, fatigueFlag:false}))
   });
   state.currentSessionId = sessionId;
   state.hourAlertShown = false;
+  persistCurrentSessionRuntime();
   renderAll();
   markDirty();
   showScreen('execution');
@@ -3000,6 +3082,8 @@ function toggleExercise(i) {
   const s = getCurrentSession();
   if (!s) return;
   s.exercises[i].completed = !s.exercises[i].completed;
+  s.updatedAt = Date.now();
+  persistCurrentSessionRuntime();
   renderExecution();
   renderHome();
   markDirty();
@@ -3029,6 +3113,7 @@ function finishSession() {
     });
   }
   state.finishedToday += 1;
+  clearRuntimePersistedSession();
   state.activeSessions = state.activeSessions.filter(x => x.id !== s.id);
   state.currentSessionId = state.activeSessions[0]?.id || null;
   renderAll();
@@ -3312,7 +3397,9 @@ window.updateExecMetric = updateExecMetric;
 renderProkinesis();
 renderCES();
 applySettings();
+restorePersistedSessionRuntime();
 renderAll();
+persistCurrentSessionRuntime();
 initCloudSync();
 </script>
 </body>
